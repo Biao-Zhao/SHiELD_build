@@ -64,13 +64,16 @@ spin()
   for arg in "$@"
   do
       case $arg in
-          shield|solo|shield|shiemom)
+          shield|solo|shield|shiemom|shiewamom)
              config="${arg#*=}"
              if [ $config = 'solo' ] ; then
                config_name="SOLO"
              fi
              if [ $config = 'shiemom' ] ; then
                config_name="SHiEMOM"
+             fi
+             if [ $config = 'shiewamom' ] ; then
+               config_name="SHiEWaMOM"
              fi
              shift # Remove "config" from processing
              ;;
@@ -118,7 +121,7 @@ spin()
           fi
           echo -e ' '
           echo -e "valid options are:"
-          echo -e "\t[shield(D)  | solo | shiemom] \t\t\t configuration"
+          echo -e "\t[shield(D)  | solo | shiemom| shiewamom] \t\t\t configuration"
           echo -e "\t[nh(D) | hydro | sw] \t\t\t executable configuration"
           echo -e "\t[prod(D) | repro | debug] \t\t compiler option settings"
           echo -e "\t[32bit(D) | 64bit] \t\t\t FV3 precision option"
@@ -142,6 +145,10 @@ if [ $compiler = "nvhpc" ] && [ $config = "shiemom" ] ; then
   exit 1
 fi
 
+if [ $compiler = "nvhpc" ] && [ $config = "shiewamom" ] ; then
+  echo -e ">>> option '$compiler' with '$config' is not a valid configuration"
+  exit 1
+fi
 #
 # set up some default variables for use within the helper scripts
 export BUILD_ROOT=${PWD%/*}
@@ -271,6 +278,49 @@ if [ $config = "shiemom" ] ; then
   fi
 fi
 
+if [ $config = "shiewamom" ] ; then
+# from lauren
+  # I think mom6 needs to be built in 64bit for now?
+  # I can only get it to compiler with 64bit FMS
+  if [ -d ${LIBS_DIR}/mom6/${compiler} ] && [ -e ${LIBS_DIR}/mom6/${compiler}/libmom6.a ] ; then
+     echo " pre-built ${LIBS_DIR}/mom6/${compiler} exists"
+  else
+     echo " ${LIBS_DIR}/mom6/${compiler} does not exist"
+     ./BUILDmom6 ${comp} ${compiler}
+     if [ $? -ne 0 ] ; then
+        echo " MOM6 build failed"
+        exit
+     fi
+     echo "DONE WITH MOM6"
+  fi
+
+# for sis2
+  if [ -d ${LIBS_DIR}/sis2/${compiler} ] && [ -e ${LIBS_DIR}/sis2/${compiler}/libsis2.a ] ; then
+     echo " pre-built ${LIBS_DIR}/sis2/${compiler} exists"
+  else
+     echo " ${LIBS_DIR}/sis2/${compiler} does not exist"
+     ./BUILDsis2 ${comp} ${compiler}
+     if [ $? -ne 0 ] ; then
+        echo " SIS2 build failed"
+        exit
+     fi
+     echo "DONE WITH SIS2"
+  fi
+
+#for ww3
+  if [ -d ${LIBS_DIR}/ww3/${compiler} ] && [ -e ${LIBS_DIR}/ww3/${compiler}/libww3.a ] ; then
+     echo " pre-built ${LIBS_DIR}/ww3/${compiler} exists"
+  else
+     echo " ${LIBS_DIR}/ww3/${compiler} does not exist"
+     ./BUILDww3 ${comp} ${compiler}
+     if [ $? -ne 0 ] ; then
+        echo " WW3 build failed"
+        exit
+     fi
+     echo "DONE WITH WW3"
+  fi
+
+fi
 #
 # ensure the build and final executable locations are available
   mkdir -p ./exec/${config}_${hydro}.${comp}.${bit}.${compiler}
