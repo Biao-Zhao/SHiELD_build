@@ -82,17 +82,18 @@ release="main"
 
 fv3_release=$release
 phy_release=$release
-fms_release=$release
-fms_c_release=$release
+fms_release="wave"
+fms_c_release="wave"
 drivers_release=$release
+wave_null_release="wave"
 
 git clone -b ${fv3_release} https://github.com/NOAA-GFDL/GFDL_atmos_cubed_sphere
-git clone -b ${fms_release}   https://github.com/NOAA-GFDL/FMS
-git clone -b ${drivers_release}   https://github.com/NOAA-GFDL/atmos_drivers
+git clone -b ${fms_release} https://github.com/Biao-Zhao/FMS.git
+git clone -b ${drivers_release} https://github.com/NOAA-GFDL/atmos_drivers
 
 if [ $config_name = 'SHiELD' ] || [ $config_name = 'SHiEMOM' ] ; then
    git clone -b ${phy_release} https://github.com/NOAA-GFDL/SHiELD_physics
-   git clone -b ${fms_c_release} https://github.com/NOAA-GFDL/FMSCoupler
+   git clone -b ${fms_c_release} wave https://github.com/Biao-Zhao/FMScoupler.git
 fi
 
 if [ $config_name = 'SHiELD' ] ; then
@@ -105,7 +106,7 @@ fi
 if [ $config_name = 'SHiEMOM' ] ; then
    git clone  https://github.com/NOAA-GFDL/land_null
    git clone  https://github.com/NOAA-GFDL/ice_param
-   git clone  https://github.com/Biao-Zhao/wave_null.git
+   git clone -b ${wave_null_release}  https://github.com/Biao-Zhao/wave_null.git
    cd ../SHiELD_build/
    ./CHECKOUT_mom6.csh
 fi

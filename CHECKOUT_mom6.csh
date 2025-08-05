@@ -5,7 +5,7 @@ source $MODULESHOME/init/csh
 cd ../SHiELD_SRC/
 echo `pwd`
 
-git clone -b dev/gfdl https://github.com/NOAA-GFDL/MOM6/
+git clone -b wave https://github.com/Biao-Zhao/MOM6.git
 git clone -b dev/gfdl https://github.com/NOAA-GFDL/SIS2/
 git clone -b dev/gfdl https://github.com/NOAA-GFDL/icebergs/
 
