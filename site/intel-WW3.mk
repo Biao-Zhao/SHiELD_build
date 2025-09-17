@@ -127,7 +127,16 @@ LDFLAGS_VERBOSE := -Wl,-V,--verbose,-cref,-M
 LDFLAGS_COVERAGE = -prof-gen=srcpos
 
 # Start with blank LIBS
+NETCDF_ROOT = $(NETCDF_DIR)
 LIBS :=
+ifneq (`nc-config --libs`,)
+  INCLUDE = `nf-config --fflags` `nc-config --cflags`
+  LIBS += `nf-config --flibs` `nc-config --libs`
+else
+  INCLUDE = -I$(NETCDF_ROOT)/include
+  LIBS += -lnetcdff -lnetcdf -lhdf5_hl -lhdf5 -lz
+endif
+
 
 # Get compile flags based on target macros.
 ifdef REPRO

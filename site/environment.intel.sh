@@ -55,6 +55,7 @@ case $hostname in
       export CXX=CC
       export LD=ftn
       export TEMPLATE=site/intel.mk
+      export TEMPLATE_WW3=site/intel-WW3.mk
       export LAUNCHER=srun
 
       #need to add this for dynamically linking on GAEA
@@ -95,6 +96,7 @@ case $hostname in
       export CXX=CC
       export LD=ftn
       export TEMPLATE=site/intel.mk
+      export TEMPLATE_WW3=site/intel-WW3.mk
       export LAUNCHER=srun
 
       #need to add this for dynamically linking on GAEA
@@ -127,6 +129,7 @@ case $hostname in
       export CXX=mpicpc
       export LD=mpiifort
       export TEMPLATE=site/intel.mk
+      export TEMPLATE_WW3=site/intel-WW3.mk
       export LAUNCHER=srun
 
       # highest level of AVX support
@@ -157,6 +160,7 @@ case $hostname in
       export CXX=mpicpc
       export LD=mpiifort
       export TEMPLATE=site/intel.mk
+      export TEMPLATE_WW3=site/intel-WW3.mk
       export LAUNCHER=srun
       echo -e ' '
       module list
@@ -180,6 +184,7 @@ case $hostname in
       export CXX=mpicpc
       export LD=mpiifort
       export TEMPLATE=site/intel.mk
+      export TEMPLATE_WW3=site/intel-WW3.mk
       export LAUNCHER=srun
 
       # highest level of AVX support
@@ -209,6 +214,7 @@ case $hostname in
       export CXX=mpicpc
       export LD=mpiifort
       export TEMPLATE=site/intel.mk
+      export TEMPLATE_WW3=site/intel-WW3.mk
       export LAUNCHER="mpirun -prepend-rank"
 
       # highest level of AVX support
@@ -239,6 +245,7 @@ case $hostname in
       export CXX=mpicxx
       export LD=mpif90
       export TEMPLATE=site/intel.mk
+      export TEMPLATE_WW3=site/intel-WW3.mk
       export LAUNCHER=srun
 
       # highest level of AVX support

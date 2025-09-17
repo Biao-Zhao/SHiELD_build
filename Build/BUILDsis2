@@ -81,7 +81,7 @@ list_paths -l -o ${LIBS_DIR}/sis2/${COMPILER}/pathnames_sis2 \
     ${SHiELD_SRC}/SIS2/config_src/external/Icepack_interfaces \
     ${SHiELD_SRC}/SIS2/src \
     ${SHiELD_SRC}/icebergs/src \
-    ${SHiELD_SRC}/ice_param 
+    ${SHiELD_SRC}/ice_param   
 
 cd ${LIBS_DIR}
 

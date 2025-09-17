@@ -88,7 +88,7 @@ cd ${BUILD_ROOT}/Build
 
 pushd ww3/${COMPILER}
 
-mkmf -m Makefile -a ${SHiELD_SRC} -p libww3.a -t "${BUILD_ROOT}/${TEMPLATE}" \
+mkmf -m Makefile -a ${SHiELD_SRC} -p libww3.a -t "${BUILD_ROOT}/${TEMPLATE_WW3}" \
       -c "-Duse_libMPI -Duse_netCDF -DSPMD " ${BUILD_ROOT}/Build/ww3/${COMPILER}/pathnames_ww3
 
 make -j8 ${COMP} AVX=Y NETCDF=3 Makefile libww3.a >& Build_ww3.out
