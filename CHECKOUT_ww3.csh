@@ -5,6 +5,4 @@ source $MODULESHOME/init/csh
 cd ../SHiELD_SRC/
 echo `pwd`
 
-git clone https://github.com/breichl/WW3.git
-cd WW3
-git checkout 203fdd1
+git clone -b shield_mom_ww3_coupling https://github.com/Biao-Zhao/WW3.git
