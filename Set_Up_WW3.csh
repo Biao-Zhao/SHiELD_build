@@ -4,7 +4,7 @@
 # This needs to reflect your WW3 compiler set.  Look in the WW3/model/bin directory for further details.
 # We won't compile the wavemodel with WW3 compile scripts, but we still need to direct the w3_source
 #  to valid compilers.
-setenv comp 'Intel'
+setenv comp 'cray_xc.Intel'
 setenv switch 'NCEP_st4'
 
 #--------------------
