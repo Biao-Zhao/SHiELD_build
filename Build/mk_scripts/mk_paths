@@ -90,8 +90,8 @@ elif [ ${CONFIG} = 'shield' ] ; then
       ice_param/ \
       land_null/ \
       atmos_drivers/SHiELD/ \
-      FMSCoupler/full/ \
-      FMSCoupler/shared/
+      FMScoupler/full/ \
+      FMScoupler/shared/
 
 elif  [ ${CONFIG} = 'shiemom' ] ; then
 
@@ -112,8 +112,8 @@ elif  [ ${CONFIG} = 'shiemom' ] ; then
       wave_null/ \
       atmos_drivers/SHiELD/ \
       GFDL_atmos_cubed_sphere/driver/SHiELD/atmosphere.F90 \
-      FMSCoupler/full/ \
-      FMSCoupler/shared/
+      FMScoupler/full/ \
+      FMScoupler/shared/
 
 elif  [ ${CONFIG} = 'shiewamom' ] ; then
 
@@ -133,8 +133,8 @@ elif  [ ${CONFIG} = 'shiewamom' ] ; then
       land_null/ \
       atmos_drivers/SHiELD/ \
       GFDL_atmos_cubed_sphere/driver/SHiELD/atmosphere.F90 \
-      FMSCoupler/full/ \
-      FMSCoupler/shared/ \
+      FMScoupler/full/ \
+      FMScoupler/shared/ \
       WW3/model/CPL/
 fi
 
